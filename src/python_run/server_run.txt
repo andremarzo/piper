@@ -1,0 +1,8 @@
+# Run http server
+python -m piper.http_server -m ../python/trained_files/models/model_1_pt_br.onnx --port 5001 --cuda --debug --download-dir ./
+
+# curl
+curl -X POST -H 'Content-Type: text/plain' --data 'Ele queria sair para ver o mar e as coisas que ele via na televisão, Juntou dinheiro para poder viajar. De escolha própria, escolheu a solidão.' -o test.wav 'localhost:5001'
+
+
+Ele queria sair para ver o mar e as coisas que ele via na televisão, Juntou dinheiro para poder viajar. De escolha própria, escolheu a solidão.

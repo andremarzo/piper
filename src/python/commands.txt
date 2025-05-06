@@ -1,0 +1,33 @@
+# Pre processamento dos audios
+python -m piper_train.preprocess \
+  --language pt-br \
+  --input-dir ./dataset \
+  --output-dir ./trained_files \
+  --dataset-format ljspeech \
+  --single-speaker \
+  --sample-rate 22050
+
+
+# Geranção do modelo
+python -m piper_train \
+  --dataset-dir ./trained_files \
+  --quality high \
+  --batch-size 16 \
+  --max-phoneme-ids 200 \
+  --accelerator 'gpu'
+
+
+# Exportando modelo (.onnx)
+python -m piper_train.export_onnx \
+    ./trained_files/lightning_logs/version_7/checkpoints/epoch=999-step=48000.ckpt \
+    ./trained_files/models/model_2_pt_br.onnx
+
+
+# Copiando arquivo de config pro modelo
+cp ./trained_files/config.json \
+   ./trained_files/models/model_2_pt_br.onnx.json
+
+
+# Teste do modelo (.onnx)
+echo 'Olá pessoal. Boa tarde! Hoje eu to aqui para mostrar esse áudio para vocês' | \
+  piper -m trained_files/models/model_2_pt_br.onnx --output_file audios/teste6.wav

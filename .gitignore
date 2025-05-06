@@ -20,3 +20,9 @@ htmlcov
 
 .venv/
 lightning_logs/
+
+*.wav
+*checkpoints*
+*cache*
+*.zip
+*dataset*
