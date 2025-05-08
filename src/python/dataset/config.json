@@ -1,0 +1,40 @@
+{
+    "language": "pt-br",
+    "phoneme_type": "espeak",
+    "phoneme_language": "pt-br",
+    "espeak_voice": "pt-br",
+    "sample_rate": 22050,
+    "num_samples": 22050,
+    "window_size": 1024,
+    "hop_length": 256,
+    "n_fft": 1024,
+    "n_mel_channels": 80,
+    "mel_fmin": 0,
+    "mel_fmax": 8000,
+    "use_noise_augment": false,
+    "add_blank": true,
+    "blank_token": " ",
+    "bos_token": "^",
+    "eos_token": "$",
+    "phoneme_cache_path": "./phoneme_cache",
+    "dataset": {
+      "name": "pt-br-custom-1",
+      "path": "./wav",
+      "metadata_file": "metadata.csv",
+      "text_column": 1,
+      "audio_column": 0
+    },
+    "trainers": {
+      "fastpitch": {
+        "batch_size": 32,
+        "epochs": 100,
+        "learning_rate": 1e-4
+      },
+      "hifigan": {
+        "batch_size": 32,
+        "epochs": 100
+      }
+    },
+    "output_directory": "./output_ptbr_model"
+  }
+  
